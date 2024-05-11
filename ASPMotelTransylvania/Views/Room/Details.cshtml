@@ -1,0 +1,216 @@
+﻿@model DataObjects.Room
+
+@{
+    ViewBag.Title = "Details";
+}
+@if (ViewBag.Error != null)
+{
+    <h1 class="text-danger text-center">@ViewBag.Error</h1>
+}
+@if (Model.RoomTypeID == "Single")
+{
+    <!--Single bed room carousal-->
+    <div id="carouselExampleIndicators" class="carousel slide m-3">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/Images/single/Bed.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Images/single/Balcony.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Images/single/Bathroom.jpg" class="d-block w-100 text-center" alt="Lobby" style="backdrop-filter: blur(.4em);">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Images/single/BathroomLookingOutside.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3>About The Room</h3>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Single</h4>
+            <p class="card-text">Despite its compact size, our Single Room is thoughtfully appointed with everything you need for a comfortable stay. Sink into the plush bedding, catch up on your favorite shows on the flat-screen TV, or catch up on work at the convenient desk area.</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3>About The Room</h3>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Things that are included in this room.</h4>
+            <p class="m-2">
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Serenity Soundscapes:</strong> Immerse yourself in the tranquility of nature with our curated collection of ambient sounds, designed to enhance relaxation and promote restful sleep. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong class="m-2">Aromatherapy Spa Shower:</strong> Indulge in a sensory experience like no other with our state-of-the-art spa shower, equipped with customizable aromatherapy settings and rainfall showerheads. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong class="m-2">Pillow Menu:</strong> Choose from our lavish selection of premium pillows to suit your sleep preferences, ensuring the ultimate in luxurious comfort. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong class="m-2">Smart Mirror Fitness Studio:</strong> Stay active and energized with virtual workout sessions led by professional instructors against scenic backdrops. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong class="m-2">Gourmet Mini-Bar Experience:</strong> Elevate your culinary journey with our gourmet mini-bar experience, stocked with artisanal snacks and premium spirits. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong class="m-2">Personalized Sunrise/Sunset Terrace:</strong> Witness breathtaking sunrises and sunsets from your private terrace overlooking majestic landscapes. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong class="m-2">Luxurious Nature-Inspired Bathrobe and Slippers:</strong> Wrap yourself in pure comfort with our plush bathrobe and slippers, adorned with nature-inspired designs. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong class="m-2">In-Room Telescope:</strong> Marvel at the wonders of the night sky with our premium in-room telescope, offering crystal-clear views of distant galaxies. <br>
+                </div>
+
+
+                <div class="card-body m-2 border border-dark">
+                    <strong class="m-2">Exclusive Concierge Hiking Trails:</strong> Discover hidden gems and picturesque landscapes with guided hiking trails curated by our knowledgeable concierge team. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong class="m-2">Digital Detox Retreat Package:</strong> Disconnect from the digital world and reconnect with nature with our retreat package including guided meditation and sunrise yoga sessions. <br>
+                </div>
+            </p>
+        </div>
+    </div>
+}
+else if (Model.RoomTypeID == "Double")
+{<!--Double room carousal-->
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/Images/Double/DoubleRoom.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Images/Double/BalconyView.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Images/Double/BalconyViewToRoom.jpg" class="d-block w-100 text-center" alt="Lobby" style="backdrop-filter: blur(.4em);">
+            </div>
+            <div class="carousel-item">
+                <img src="~/Images/Double/Shower.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h3>About The Room</h3>
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Double</h4>
+            <p class="card-text">Experience spacious luxury in our Double Room, offering ample space for relaxation and comfort. Spread out and unwind in the expansive room, enjoy panoramic views through the floor-to-ceiling windows, or step out onto your private balcony to soak in the surrounding natural beauty.</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h3>Amenities</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Things that are included in this room.</h5>
+            <p class="m-2">
+            <p class="m-2">
+                <div class="card-body m-2 border border-dark">
+                    <strong>Serenity Soundscapes:</strong> Immerse yourself in the tranquility of nature with our curated collection of ambient sounds, designed to enhance relaxation and promote restful sleep. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Aromatherapy Spa Shower:</strong> Indulge in a sensory experience like no other with our state-of-the-art spa shower, equipped with customizable aromatherapy settings and rainfall showerheads. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Pillow Menu:</strong> Choose from our lavish selection of premium pillows to suit your sleep preferences, ensuring the ultimate in luxurious comfort. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Smart Mirror Fitness Studio:</strong> Stay active and energized with virtual workout sessions led by professional instructors against scenic backdrops. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Gourmet Mini-Bar Experience:</strong> Elevate your culinary journey with our gourmet mini-bar experience, stocked with artisanal snacks and premium spirits. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Personalized Sunrise/Sunset Terrace:</strong> Witness breathtaking sunrises and sunsets from your private terrace overlooking majestic landscapes. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Luxurious Nature-Inspired Bathrobe and Slippers:</strong> Wrap yourself in pure comfort with our plush bathrobe and slippers, adorned with nature-inspired designs. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>In-Room Telescope:</strong> Marvel at the wonders of the night sky with our premium in-room telescope, offering crystal-clear views of distant galaxies. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Exclusive Concierge Hiking Trails:</strong> Discover hidden gems and picturesque landscapes with guided hiking trails curated by our knowledgeable concierge team. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Digital Detox Retreat Package:</strong> Disconnect from the digital world and reconnect with nature with our retreat package including guided meditation and sunrise yoga sessions. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Double-Size Panoramic Windows:</strong> Enjoy expansive views of the surrounding scenic beauty through floor-to-ceiling panoramic windows, filling your room with natural light and breathtaking vistas. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Spacious Sitting Area:</strong> Relax and unwind in the comfort of your double-sized room's spacious sitting area, furnished with plush seating and adorned with nature-inspired décor. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Private Balcony:</strong> Step out onto your private balcony to soak in the sights and sounds of nature, offering the perfect spot for morning coffee or evening stargazing. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Luxury Bedding Ensemble:</strong> Drift off into a peaceful slumber on our luxurious bedding ensemble, featuring premium linens and plush duvets for a restful night's sleep. <br>
+                </div>
+
+                <div class="card-body m-2 border border-dark">
+                    <strong>Double Vanity Bathroom:</strong> Indulge in added convenience and luxury with a double vanity bathroom, featuring ample counter space and upscale amenities for your comfort. <br>
+                </div>
+            </p>
+        </div>
+    </div>
+}

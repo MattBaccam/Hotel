@@ -1,0 +1,85 @@
+﻿<Window x:Class="ScenicHotel.ReservationFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScenicHotel"
+        mc:Ignorable="d"
+        Title="ReservationForm" Height="750" Width="650" Background="#FFF5F5F5" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--#region Guest Information UI-->
+        <Label Grid.ColumnSpan="2" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom">Guest Information</Label>
+        <Button x:Name="buttonClearSelectedGuest" Grid.Column="2" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="bottom" FontWeight="ExtraBold" Content="X" Click="buttonClearSelectedGuest_Click"></Button>
+
+        <Label Grid.Row="1" Grid.Column="0" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">First Name:</Label>
+        <TextBox x:Name="textBoxFirstName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,20,10,20" VerticalContentAlignment="Center" Background="#FFEAEAEA" LostFocus="textBoxFirstName_LostFocus"></TextBox>
+        <Button x:Name="buttonCheckForFirst" Grid.Row="1" Grid.Column="3" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="center" FontWeight="Bold" Content="✓" Click="buttonCheckForFirst_Click"></Button>
+
+        <Label Grid.Row="2" Grid.Column="0" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">Last Name:</Label>
+        <TextBox x:Name="textBoxLastName" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,20,10,20" VerticalContentAlignment="Center" Background="#FFEAEAEA"></TextBox>
+        <Button x:Name="buttonCheckForFirstAndLast" Grid.Row="2" Grid.Column="3" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="center" FontWeight="Bold" Content="✓" Click="buttonCheckForFirstAndLast_Click"></Button>
+
+        <Label Grid.Row="1" Grid.Column="3" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" Margin="15,15,0,15" HorizontalContentAlignment="Right">Phone:</Label>
+        <TextBox x:Name="textBoxPhone" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Margin="10,20,10,20" VerticalContentAlignment="Center" Background="#FFEAEAEA"></TextBox>
+
+        <Label Grid.Row="2" Grid.Column="3" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Margin="15,15,0,15">Email:</Label>
+        <TextBox x:Name="textBoxEmail" Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Margin="10,20,10,20" VerticalContentAlignment="Center" Background="#FFEAEAEA"></TextBox>
+        <!--#endregion-->
+        <!--#region Reservation Information UI-->
+        <Label Grid.Row="3" Grid.ColumnSpan="3" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom">Reservation Information</Label>
+        <Label Grid.Row="4" Grid.Column="0" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">Check In:</Label>
+        <TextBox x:Name="textBoxCheckIn" Grid.Row="4" Grid.Column="1" Margin="10,20,10,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Background="#FFEAEAEA" IsReadOnly="True"></TextBox>
+        <Button x:Name="buttonCheckInCalendar" Grid.Row="4" Grid.Column="2"  FontSize="15" HorizontalAlignment="Left" VerticalAlignment="center" FontWeight="Bold" Content="📅" Click="buttonCheckInCalendar_Click"></Button>
+
+        <Label Grid.Row="5" Grid.Column="0" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">Nights:</Label>
+        <TextBox x:Name="textBoxNights" Grid.Row="5" Grid.Column="1" Margin="10,20,40,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#FFEAEAEA" LostFocus="textBoxNights_LostFocus"></TextBox>
+
+        <Label Grid.Row="6" Grid.Column="0" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">Check Out:</Label>
+        <TextBox x:Name="textBoxCheckOut" Grid.Row="6" Grid.Column="1" Margin="10,20,10,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Background="#FFEAEAEA" IsReadOnly="True"></TextBox>
+        <Button x:Name="buttonCheckCheckOutCalendar" Grid.Row="6" Grid.Column="2" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="center" FontWeight="Bold" Content="📅" Click="buttonCheckCheckOutCalendar_Click"></Button>
+
+        <Label Grid.Row="7" Grid.Column="0" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">Adults:</Label>
+        <TextBox x:Name="textBoxAdults" Grid.Row="7" Grid.Column="1" Margin="10,20,40,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#FFEAEAEA"></TextBox>
+
+        <Label Grid.Row="8" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">Child:</Label>
+        <TextBox x:Name="textBoxChild" Grid.Row="8" Grid.Column="1" Margin="10,20,40,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#FFEAEAEA"></TextBox>
+
+        <Label Grid.Row="4" Grid.Column="3" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">Room:</Label>
+        <TextBox x:Name="textBoxRoom" Grid.Row="4" Grid.Column="4" Margin="10,20,10,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Background="#FFEAEAEA" IsEnabled="False"></TextBox>
+
+        <Label Grid.Row="5" Grid.Column="3" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">Room Type:</Label>
+        <TextBox x:Name="textBoxRoomType" Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" FontSize="13" Margin="10,20,10,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Background="#FFEAEAEA" IsEnabled="False"></TextBox>
+
+        <Label Grid.Row="6" Grid.Column="3" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Center" HorizontalContentAlignment="Right">Rate:</Label>
+        <TextBox x:Name="textBoxRate" Grid.Row="6" Grid.Column="4" Margin="10,20,10,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Background="#FFEAEAEA" IsEnabled="False"></TextBox>
+
+        <Label Grid.Row="7" Grid.Column="3" FontSize="13" FontWeight="Medium" VerticalContentAlignment="Top" HorizontalContentAlignment="Left">Comments:</Label>
+        <TextBox x:Name="textBoxComments" Grid.Row="7" Grid.Column="3" Grid.ColumnSpan="3" Grid.RowSpan="3" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Margin="0,25,10,10"></TextBox>
+        <!--#endregion-->
+        <!--#region Footer-->
+        <Button x:Name="buttonConfirm" Grid.Column="4" Grid.Row="10" Grid.ColumnSpan="2" Margin="15,15,15,15" BorderThickness="0,0,0,1" Click="buttonConfirm_Click">Confirm</Button>
+        <Button x:Name="buttonCancel" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="2" Margin="15,15,15,15" Click="buttonCancel_Click">Cancel</Button>
+        <!--#endregion-->
+    </Grid>
+</Window>

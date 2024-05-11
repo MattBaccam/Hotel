@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DataObjects.Events>
+
+@{
+    ViewBag.NoHero = true;
+}
+<div>
+    <div class="btn-group w-100">
+        <div class="d-flex justify-content-start w-100">
+            @Html.ActionLink("Create Reservation", "RoomsAvailable", "Room", routeValues: null, htmlAttributes: new { @class = "btn m-1 d-flex justify-content-start" })
+            <div>
+                <button type="button" class="btn dropdown-toggle m-1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Filter
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="@Url.Action("Reservations", "EmployeeLanding", new { filterID = "All" })">All</a>
+                    <a class="dropdown-item" href="@Url.Action("Reservations", "EmployeeLanding", new { filterID = "Due In" })">Due In</a>
+                    <a class="dropdown-item" href="@Url.Action("Reservations", "EmployeeLanding", new { filterID = "Due Out" })">Due Out</a>
+                    <a class="dropdown-item" href="@Url.Action("Reservations", "EmployeeLanding", new { filterID = "Out" })">Out</a>
+                    <a class="dropdown-item" href="@Url.Action("Reservations", "EmployeeLanding", new { filterID = "Canceled" })">Canceled</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center m-1">
+    <div id="calendar" class="w-75 m-2"></div>
+</div>
+
+<script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+              height: 850,
+              headerToolbar: {
+                  start: 'dayGridMonth,timeGridWeek,timeGridDay',
+                  center: 'title',
+                  end: 'prevYear,prev,today,next,nextYear'
+              },
+              initialView: 'dayGridMonth',
+              events: @(Html.Raw(Json.Encode(Model))),
+
+        });
+        calendar.render();
+      });
+</script>

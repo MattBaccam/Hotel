@@ -1,0 +1,35 @@
+﻿@model DataObjects.ReservationVM
+
+@{
+    ViewBag.Title = "Receipt";
+}
+<div class="m-auto w-50 text-center">
+    <div class="card d-flex justify-content-center">
+        <div class="card-header">
+            Reservation Information
+        </div>
+        <h6 class="card-subtitle m-2 text-muted">About the reservation</br> Status: @Model.ReservationStatus </br> Stay Price: @ViewBag.Price</h6>
+        <div class="card-body mx-auto vstack gap-3">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @Value = $"{Model.Name}", @class = "form-control text-center", @ReadOnly = true } })
+
+            @Html.LabelFor(model => model.Guest.Phone, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Guest.Phone, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+
+            @Html.LabelFor(model => model.CheckIn, "Check In", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.CheckIn, new { htmlAttributes = new { @Value = Model.CheckIn.ToString("MM/dd/yyyy"), @class = "form-control text-center", @ReadOnly = true } })
+
+            @Html.LabelFor(model => model.CheckOut, "Check Out", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.CheckOut, new { htmlAttributes = new { @Value = Model.CheckOut.ToString("MM/dd/yyyy"), @class = "form-control text-center", @ReadOnly = true } })
+
+            @Html.LabelFor(model => model.Room.RoomID, "Room Number", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Room.RoomID, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+
+            @Html.LabelFor(model => model.Room.RoomType.RoomTypeID, "Room Type", htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Room.RoomType.RoomTypeID, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+        </div>
+        <div class="m-2">
+            @Html.ActionLink("Back", "ReservationDetails", "EmployeeLanding", new { reservationID = Model.ReservationID }, new { @class = "btn m-1" })
+        </div>
+    </div>
+</div>

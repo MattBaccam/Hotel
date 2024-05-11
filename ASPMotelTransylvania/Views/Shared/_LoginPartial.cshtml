@@ -1,0 +1,89 @@
+﻿@using Microsoft.AspNet.Identity
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        @Html.ActionLink("Scenic Hotel", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Home", @class = "navbar-brand text-light fw-bold fs-4" })
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "nav-item" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <a class="btn" href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                    }
+                    <li class="nav-item">
+                        @if (User.IsInRole("Front Desk Agent"))
+                        {
+                            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Employee", routeValues: null, htmlAttributes: new { @class = "btn" })
+                        }
+                        else if (User.IsInRole("Housekeeper"))
+                        {
+                            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Employee", routeValues: null, htmlAttributes: new { @class = "btn" })
+                        }
+                        else if (User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Employee", routeValues: null, htmlAttributes: new { @class = "btn" })
+                        }
+                        else if (User.IsInRole("Guest"))
+                        {
+                            @Html.ActionLink(User.Identity.GetUserName(), "Index", "Guest", routeValues: null, htmlAttributes: new { @class = "btn" })
+                        }
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn" })</li>
+                    <li class="nav-item">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn" })</li>
+                }
+                @if (User.IsInRole("Front Desk Agent") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item dropdown">
+                        <div class="btn-group dropdown">
+                            @Html.ActionLink("Employee", "Index", "EmployeeLanding", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn" })
+                            <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSecondary">
+                                @Html.ActionLink("Reservations", "Reservations", "EmployeeLanding", htmlAttributes: new { id = "registerLink", @class = "dropdown-item" })
+                                @Html.ActionLink("Room Management", "Index", "Room", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "dropdown-item" })
+                                <hr class="dropdown-divider">
+                            </div>
+                        </div>
+                    </li>
+                }
+                @if (User.IsInRole("Housekeeper"))
+                {
+                    <li class="nav-item dropdown">
+                        <div class="btn-group dropdown">
+                            @Html.ActionLink("Employee", "Index", "EmployeeLanding", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn" })
+                            <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSecondary">
+                                <a class="dropdown-item" href="#">Rooms</a>
+                            </div>
+                        </div>
+                    </li>
+                }
+                @if (User.IsInRole("Guest"))
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Reservations", "Reservations", "Guest", routeValues: null, htmlAttributes: new { @class = "btn" })
+                    </li>
+                }
+                @if (User.IsInRole("Front Desk Agent") || User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Reservations","Reservations", "EmployeeLanding", routeValues: null, htmlAttributes: new { @class = "btn" })
+                    </li>
+                }
+                <li class="nav-item">
+                    @Html.ActionLink("Our Rooms", "Index", "Room", routeValues: null, htmlAttributes: new { @class = "btn" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("About Us", "About", "Home", routeValues: null, htmlAttributes: new { title = "Home", @class = "btn" })
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+

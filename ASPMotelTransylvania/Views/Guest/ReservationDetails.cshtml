@@ -1,0 +1,99 @@
+﻿@model DataObjects.ReservationVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@if (ViewBag.Error != null)
+{
+    <h1 class="text-danger text-center">@ViewBag.Error</h1>
+}
+
+<div class="container">
+    @if (Model != null)
+    {
+        if (Model.Room.RoomTypeID == "Single")
+        {
+            <img class="w-100 h-100" src="~/Images/single/Bed.jpg">
+        }
+        else if (Model.Room.RoomTypeID == "Double")
+        {
+            <img class="w-100 h-100" src="~/Images/Double/DoubleRoom.jpg">
+        }
+    }
+</div>
+<div class="container">
+    <h2><strong>Price: $@ViewBag.Price</strong></h2>
+    <hr />
+</div>
+<div class="container d-flex justify-content-start">
+    <div>
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Guest.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.Guest.FirstName, new { htmlAttributes = new { @class = "form-control w-50", ReadOnly = true } })
+            @Html.ValidationMessageFor(model => model.Guest.FirstName, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Guest.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.Guest.LastName, new { htmlAttributes = new { @class = "form-control w-50", ReadOnly = true } })
+            @Html.ValidationMessageFor(model => model.Guest.LastName, "", new { @class = "text-danger" })
+        </div>
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Guest.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.Guest.Email, new { htmlAttributes = new { @class = "form-control w-50", ReadOnly = true } })
+            @Html.ValidationMessageFor(model => model.Guest.Email, "", new { @class = "text-danger" })
+        </div>
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Guest.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.Guest.Phone, new { htmlAttributes = new { @class = "form-control w-50", ReadOnly = true } })
+            @Html.ValidationMessageFor(model => model.Guest.Phone, "", new { @class = "text-danger" })
+        </div>
+        <hr />
+        <div class="mb-3 d-flex justify-content-left">
+            <div>
+                @Html.LabelFor(model => model.CheckIn, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.CheckIn, new { htmlAttributes = new { @class = "form-control w-75", ReadOnly = true, @Value = Model.CheckIn.ToString("MM/dd/yyyy") } })
+                @Html.ValidationMessageFor(model => model.CheckIn, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(model => model.CheckOut, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.CheckOut, new { htmlAttributes = new { @class = "form-control w-75", ReadOnly = true, @Value = Model.CheckOut.ToString("MM/dd/yyyy") } })
+                @Html.ValidationMessageFor(model => model.CheckOut, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        <div class="mb-3 d-flex justify-content-left">
+            <div>
+                @Html.LabelFor(model => model.Room.RoomID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Room.RoomID, new { htmlAttributes = new { @class = "form-control w-50", ReadOnly = true } })
+                @Html.ValidationMessageFor(model => model.Room.RoomID, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(model => model.Room.RoomTypeID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.Room.RoomTypeID, new { htmlAttributes = new { @class = "form-control w-50", ReadOnly = true } })
+                @Html.ValidationMessageFor(model => model.Room.RoomTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        <div class="mb-3 d-flex flex-wrap">
+            <div>
+                @Html.LabelFor(model => model.AdultAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.AdultAmount, new { htmlAttributes = new { @class = "form-control w-25", min = 1, max = 4, ReadOnly = true } })
+                @Html.ValidationMessageFor(model => model.AdultAmount, "", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(model => model.ChildAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.EditorFor(model => model.ChildAmount, new { htmlAttributes = new { @class = "form-control w-25", min = 0, max = 5, ReadOnly = true } })
+                @Html.ValidationMessageFor(model => model.ChildAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="mb-3">
+            @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.Comments, new { htmlAttributes = new { @class = "form-control w-50", ReadOnly = true } })
+            @Html.ValidationMessageFor(model => model.Comments, "", new { @class = "text-danger" })
+        </div>
+        <a class="btn" href="@Url.Action("EditReservation", "Guest", new { reservationID = Model.ReservationID})">Edit</a>
+    </div>
+    </div>
+

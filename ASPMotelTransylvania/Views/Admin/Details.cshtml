@@ -1,0 +1,88 @@
+﻿@model ASPScenicHotel.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ApplicationUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            Assigned Roles:
+        </dt>
+
+        <dd>
+            <ul>
+                @foreach (string role in ViewBag.Roles)
+                {
+                    <li>
+                        <strong>
+                            @role @Html.ActionLink("Remove Role", "RemoveRole", new { Id = Model.Id, Role = role}, new { @class = "btn" })
+                        </strong>
+                        @if (role == "Admin")
+                        {
+                            <span style="color: red; font-weight: bold;">@ViewBag.Error</span>
+                        }
+                    </li>
+                }
+            </ul>
+        </dd>
+
+
+        <dt>
+            Unassigned Roles:
+        </dt>
+
+        <dd>
+            <ul>
+                @foreach (string role in ViewBag.NoRoles)
+                {
+                    <li>
+                        <strong>
+                            @role @Html.ActionLink("Add Role", "AddRole", new { Id = Model.Id, Role = role }, new { @class = "btn m-1" })
+                        </strong>
+                    </li>
+                }
+            </ul>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", "Admin", new {@class = "btn"})
+</p>

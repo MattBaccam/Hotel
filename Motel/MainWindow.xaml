@@ -1,0 +1,366 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScenicHotel"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="ScenicHotel.MainWindow"
+        mc:Ignorable="d"
+        Title="Motel Transylvania" Height="1025" Width="1500" WindowStartupLocation="CenterScreen" MinHeight="1025" MinWidth="1500" Loaded="Window_Loaded" Background="#FFDEDEDE">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="713*"/>
+        </Grid.ColumnDefinitions>
+        <!--This defines the whole apps layout-->
+        <Grid.RowDefinitions >
+            <RowDefinition Height ="70"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="buttonMenu" Click="buttonMenu_Click">☰</Button>
+        </Grid>
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions >
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*"/>
+                <!--Message-->
+                <ColumnDefinition Width="*"/>
+                <!--Email-->
+                <ColumnDefinition Width="*"/>
+                <!--Password-->
+                <ColumnDefinition Width="*"/>
+                <!--Login/LogOut-->
+            </Grid.ColumnDefinitions>
+            <!--#region AppHeader -->
+            <Label FontWeight="Bold" VerticalAlignment="Center" FontSize="20" Grid.Column="0" Grid.Row="0" Content="Motel Transylvania:"/>
+            <Label x:Name="labelEmployeeLoggedIn" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="18" Grid.Column="0" Grid.Row="1"/>
+            <Label x:Name="labelEmployeeEmail" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="20" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Center" Content="Email"/>
+            <TextBox x:Name="textBoxEmployeeEmail" VerticalAlignment="Center" FontSize="13" Grid.Column="1" Grid.Row="1" Background="#FFEAEAEA" Margin="10,0,10,0"></TextBox>
+            <Label x:Name="labelEmployeePassword" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="20" Grid.Column="2" Grid.Row="0" HorizontalContentAlignment="Center" Content="Password"/>
+            <PasswordBox x:Name="passwordBoxEmployeePassword" VerticalAlignment="Center" FontSize="13" Grid.Column="2" Grid.Row="1" Background="#FFEAEAEA" Margin="10,0,10,0"></PasswordBox>
+            <Button x:Name="buttonEmployeeLoginLogout" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="20" Grid.Column="3" Grid.Row="1" HorizontalContentAlignment="Center" Content="Log In" Margin="75,0,75,0" Click="Button_Click"></Button>
+            <!--#endregion-->
+        </Grid>
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <StackPanel x:Name="tabContainer" Grid.ColumnSpan="2">
+                <TabControl x:Name="tabsetMain"  Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=StackPanel}}" TabStripPlacement="Left" Background="WhiteSmoke" SelectionChanged="tabsetMain_SelectionChanged">
+                    <TabItem x:Name="tabReservations" Header="Reservations" FontSize="18" FontWeight="Bold" Height="35">
+                        <Grid x:Name="reservationGrid" Height="873" Width="1372">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <!--#region Reservation UI -->
+                            <!--#region Things Above the search-->
+                            <Label VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="18" FontWeight="Medium" Grid.Row="0" Grid.Column="1" Padding="0">First</Label>
+                            <TextBox x:Name="textBoxReservationSearchFirstName" Grid.Column="2" Background="#FFEAEAEA" Grid.ColumnSpan="2" Margin="25,38,25,0" VerticalAlignment="Bottom" FontSize="15" FontWeight="Medium"></TextBox>
+
+                            <Label VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="18" FontWeight="Medium" Grid.Row="1" Grid.Column="1" Padding="0" Margin="0,0,0,60" Grid.RowSpan="2">Last</Label>
+                            <TextBox x:Name="textBoxReservationSearchLastName" Grid.Column="2" Background="#FFEAEAEA" Grid.ColumnSpan="2" Margin="25,39,25,0" VerticalAlignment="Bottom" FontSize="15" FontWeight="Medium" Grid.RowSpan="2"></TextBox>
+
+
+                            <Label VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="18" FontWeight="Medium" Grid.Row="2" Grid.Column="1" Padding="0" Margin="0,0,0,60" Grid.RowSpan="2">Check In</Label>
+                            <TextBox x:Name="textBoxReservationSearchCheckIn" Grid.Row="1" Grid.Column="2" Background="#FFEAEAEA" Grid.ColumnSpan="2" Margin="25,38,25,0" VerticalAlignment="Bottom" FontSize="15" FontWeight="Medium" Grid.RowSpan="2" IsReadOnly="True"></TextBox>
+                            <Button x:Name="buttonReservationSearchCheckIn" Grid.Column="4" Grid.Row="2" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" Click="buttonReservationSearchCheckIn_Click">📅</Button>
+
+
+                            <Label VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="18" FontWeight="Medium" Grid.Row="3" Grid.Column="1" Padding="0">Check Out</Label>
+                            <TextBox x:Name="textBoxReservationSearchCheckOut" Grid.Row="3" Grid.Column="2" Background="#FFEAEAEA" Grid.ColumnSpan="2" Margin="25,38,25,0" VerticalAlignment="Bottom" FontSize="15" FontWeight="Medium" IsReadOnly="True"></TextBox>
+                            <Button x:Name="buttonReservationSearchCheckOut" Grid.Column="4" Grid.Row="3" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Bold" Click="buttonReservationSearchCheckOut_Click">📅</Button>
+
+                            <CheckBox x:Name="checkBoxDueIn" Grid.Column="0" Grid.Row="1" Margin="0,15,0,15" HorizontalContentAlignment="Left" Checked="checkBoxDueIn_Checked">Due In</CheckBox>
+                            <CheckBox x:Name="checkBoxDueOut" Grid.Column="0" Grid.Row="2" Margin="0,15,0,15" HorizontalContentAlignment="Left" Checked="checkBoxDueOut_Checked">Due Out</CheckBox>
+                            <CheckBox x:Name="checkBoxOut" Grid.Column="0" Grid.Row="3" Margin="0,15,0,15" HorizontalContentAlignment="Left" Checked="checkBoxOut_Checked">Out</CheckBox>
+                            <CheckBox x:Name="checkBoxCanceled" Grid.Column="0" Grid.Row="4" Margin="0,15,0,15" HorizontalContentAlignment="Left" Checked="checkBoxCanceled_Checked">Canceled</CheckBox>
+                            <Button x:Name="buttonReservationSearch" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="4" Margin="0,20,0,15" Click="buttonReservationSearch_Click">Search</Button>
+                            <!--Search Results-->
+                            <DataGrid x:Name="gridReservationDisplaySearch" Grid.Row="5" Grid.RowSpan="7" Grid.ColumnSpan="6" FontSize="15" VerticalScrollBarVisibility="Visible" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Background="#FFEAEAEA" MouseDoubleClick="gridReservationDisplaySearch_MouseDoubleClick" CanUserAddRows="False" IsReadOnly="True">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn x:Name="dataGridColumnName" Width="*" Binding="{Binding Name}" Header="Name"></DataGridTextColumn>
+                                    <DataGridTextColumn x:Name="dataGridColumnCheckIn" Width="*" Binding="{Binding CheckIn}" Header="Check In"></DataGridTextColumn>
+                                    <DataGridTextColumn x:Name="dataGridColumnCheckOut" Width="*" Binding="{Binding CheckOut}" Header="Check Out"></DataGridTextColumn>
+                                    <DataGridTextColumn x:Name="dataGridColumnStatus" Width="*" Binding="{Binding ReservationStatus}" Header="Status"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <!--#endregion-->
+                            <!--#region Contact Information-->
+                            <Label Grid.Column="6" Grid.ColumnSpan="3" FontSize="20" VerticalAlignment="Top" FontWeight="ExtraBlack">Details</Label>
+
+                            <Label Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="3" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Contact Information</Label>
+
+
+                            <Label Grid.Column="6" Grid.Row="2" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">First Name:</Label>
+                            <Label x:Name="labelReservationContactFirstName" FontSize="15" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Medium" Visibility="Hidden"></Label>
+                            <TextBox x:Name="textboxReservationEditContactFirstName" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="2" Margin="10,20,10,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontWeight="Normal" FontSize="15" IsReadOnly="True" Background="#FFEAEAEA"></TextBox>
+
+
+                            <Label Grid.Column="6" Grid.Row="3" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Last Name:</Label>
+                            <Label x:Name="labelReservationContactLastName" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center"  FontWeight="Medium" Visibility="Hidden"></Label>
+                            <TextBox x:Name="textboxReservationEditContactLastName" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="2" Margin="10,20,10,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontWeight="Normal" FontSize="15" IsReadOnly="True" Background="#FFEAEAEA"></TextBox>
+
+
+                            <Label Grid.Column="8" Grid.Row="2" Grid.ColumnSpan="3" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" >Phone Number:</Label>
+                            <Label x:Name="labelReservationContactPhoneNumber" Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="2" Margin="10,10,10,10" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontWeight="Medium"></Label>
+                            <TextBox x:Name="textboxReservationEditContactPhoneNumber" Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="2" Margin="10,20,10,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontWeight="Normal" FontSize="15" IsReadOnly="True" Background="#FFEAEAEA"></TextBox>
+
+
+                            <Label Grid.Column="10" Grid.Row="3" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Email:</Label>
+                            <Label x:Name="labelReservationContactEmail" Grid.Column="11" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Medium" Visibility="Hidden"></Label>
+                            <TextBox x:Name="textboxReservationEditContactEmail" Grid.Column="11" Grid.Row="3" Grid.ColumnSpan="2" Margin="10,20,10,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontWeight="Normal" FontSize="15" IsReadOnly="True" Background="#FFEAEAEA"></TextBox>
+                            <!--#endregion-->
+                            <!--#region Reservation Information-->
+                            <Label Grid.Column="6" Grid.Row="6" Grid.ColumnSpan="3" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold">Reservation Details</Label>
+                            <Label Grid.Column="6" Grid.Row="7" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Check In:</Label>
+                            <TextBox x:Name="textBoxReservationCheckIn" Grid.Column="7" Grid.Row="7" Grid.ColumnSpan="1" Margin="0,20,15,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" Background="#FFEAEAEA" IsReadOnly="True"></TextBox>
+                            <Button x:Name="buttonReservationCheckInCalendar" Grid.Column="8" Grid.Row="7" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Click="buttonReservationCheckInCalendar_Click" IsEnabled="False">📅</Button>
+
+                            <Label Grid.Column="6" Grid.Row="8" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Check Out:</Label>
+                            <TextBox x:Name="textBoxReservationCheckOut" Grid.Column="7" Grid.Row="8" Margin="0,20,15,20" Grid.ColumnSpan="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" Background="#FFEAEAEA" IsReadOnly="True"></TextBox>
+                            <Button x:Name="buttonReservationCheckOutCalendar" Grid.Column="8" Grid.Row="8" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Click="buttonReservationCheckOutCalendar_Click" IsEnabled="False" RenderTransformOrigin="0.5,0.5">📅</Button>
+
+                            <Label Grid.Column="6" Grid.Row="9" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Adult Amout:</Label>
+                            <TextBox x:Name="textBoxReservationAdultAmount" Grid.Column="7" Grid.Row="9" Margin="0,20,15,20" Grid.ColumnSpan="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" Background="#FFEAEAEA" IsReadOnly="True" InputScope="Number"/>
+
+                            <Label Grid.Column="8" Grid.Row="9" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Child Amout:</Label>
+                            <TextBox x:Name="textBoxReservationChildAmount" Grid.Column="9" Grid.Row="9" Margin="0,20,15,20" Grid.ColumnSpan="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" Background="#FFEAEAEA" IsReadOnly="True" InputScope="Number"></TextBox>
+
+
+                            <Label Grid.Column="8" Grid.Row="7" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Room:</Label>
+                            <TextBox x:Name="textBoxReservationRoom" Grid.Column="9" Grid.Row="7" Grid.ColumnSpan="1" Margin="0,20,15,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" IsReadOnly="True" IsEnabled="false" Background="#FFEAEAEA" MouseDoubleClick="textBoxReservationRoom_MouseDoubleClick"></TextBox>
+
+
+                            <Label Grid.Column="10" Grid.Row="7" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Room Type:</Label>
+                            <TextBox x:Name="textBoxReservationRoomType" Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="7" Margin="0,20,15,20" VerticalContentAlignment="Center" FontWeight="Normal" FontSize="15" IsReadOnly="True" Background="#FFEAEAEA"></TextBox>
+
+                            <Label Grid.Column="10" Grid.Row="8" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Room Rate:</Label>
+                            <TextBox x:Name="textBoxReservationRoomRate" Grid.Column="11" Grid.Row="8" Margin="0,20,15,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" IsReadOnly="True" Background="#FFEAEAEA"></TextBox>
+
+                            <Label Grid.Column="8" Grid.Row="8" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Paid:</Label>
+                            <TextBox x:Name="textBoxReservationPaid" Grid.Column="9" Grid.Row="8" Grid.ColumnSpan="1" Margin="0,20,15,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" IsReadOnly="True" Background="#FFEAEAEA"></TextBox>
+
+                            <Label Grid.Column="10" Grid.Row="9" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Room Status:</Label>
+                            <ComboBox x:Name="comboBoxReservationRoomStatus" Grid.Column="11" Grid.Row="9" Margin="0,20,10,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" IsEnabled="False" Background="#FFEAEAEA"></ComboBox>
+
+
+                            <!--#region ReservationButton-->
+                            <Button x:Name="buttonReservationComments" Grid.Column="7" Grid.Row="11" Grid.ColumnSpan="2" Margin="10,10,10,10" Click="buttonReservationComments_Click">Comments</Button>
+                            <Button x:Name="buttonReservationCheckOut" Grid.Column="9" Grid.Row="11" Grid.ColumnSpan="2" Margin="10,10,10,10" Click="buttonReservationCheckOut_Click">Check Out</Button>
+                            <Button x:Name="buttonReservationCheckIn" Grid.Column="11" Grid.Row="11" Grid.ColumnSpan="2" Margin="10,10,10,10" Click="buttonReservationCheckIn_Click">Check In</Button>
+                            <Button x:Name="buttonReservationCancel" Grid.Column="7" Grid.Row="12" Grid.ColumnSpan="2" Margin="10,10,10,10" Visibility="Hidden" Click="buttonReservationCancel_Click">Cancel</Button>
+                            <Button x:Name="buttonReservationEdit" Grid.Column="9" Grid.Row="12" Grid.ColumnSpan="2" Margin="10,10,10,10" Click="buttonReservationEdit_Click">Edit</Button>
+                            <Button x:Name="buttonReservationRoomCharges" Grid.Column="11" Grid.Row="12" Grid.ColumnSpan="2" Margin="10,10,10,10" Click="buttonReservationRoomCharges_Click">Room Charges</Button>
+                            <!--#region Footer-->
+                            <Button x:Name="buttonReservationCreateReservation" Grid.Row="12" Grid.ColumnSpan="2" FontSize="20" VerticalContentAlignment="Center" Margin="0,15,0,15" Click="buttonReservationCreateReservation_Click">Create Reservation</Button>
+                            <Button x:Name="buttonReservationCancelReservation" Grid.Row="12" Grid.Column="4" Grid.ColumnSpan="2" FontSize="20" VerticalContentAlignment="Center" Margin="0,15,0,15" Click="buttonReservationCancelReservation_Click">Cancel Reservation</Button>
+                            <!--#endregion-->
+                            <!--#endregion-->
+                            <!--#endregion-->
+                            <!--#endregion-->
+                        </Grid>
+                    </TabItem>
+                    <TabItem x:Name="tabPantry" Header="Pantry Sales" FontSize="18" FontWeight="Bold" Height="35" Margin="-2,0,0,0" VerticalAlignment="Bottom">
+                        <Grid  x:Name="pantryGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <!--#region PantryUI-->
+                            <Label Content="Pantry Sales" Grid.Column="5" Grid.ColumnSpan="3" FontSize="35" FontWeight="Bold" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center"/>
+                            <!--#region Left Column-->
+                            <Button x:Name="buttonPantryCandy" Grid.Row="2" Grid.Column="1" Margin="5,5,5,5" Click="buttonPantryCandy_Click">Candy</Button>
+                            <Button x:Name="buttonPantryChips" Grid.Row="2" Grid.Column="2" Margin="5,5,5,5" Click="buttonPantryChips_Click">Chips</Button>
+                            <Button x:Name="buttonPantrySnack" Grid.Row="2" Grid.Column="3" Margin="5,5,5,5" Click="buttonPantrySnack_Click">Snack</Button>
+                            <Button x:Name="buttonPantryWater" Grid.Row="3" Grid.Column="1" Margin="5,5,5,5" Click="buttonPantryWater_Click">Water</Button>
+                            <Button x:Name="buttonPantryJuice" Grid.Row="3" Grid.Column="2" Margin="5,5,5,5" Click="buttonPantryJuice_Click">Juice</Button>
+                            <Button x:Name="buttonPantrySoda" Grid.Row="3" Grid.Column="3" Margin="5,5,5,5" Click="buttonPantrySoda_Click">Soda</Button>
+                            <Label x:Name="labelPantryTotalPrice" Grid.Row="3" Grid.Column="4" FontSize="20" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.ColumnSpan="2"></Label>
+                            <DataGrid x:Name="gridPantryDisplaySales" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="9"  FontSize="15" VerticalScrollBarVisibility="Visible" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Background="#FFEAEAEA" MouseDoubleClick="gridReservationDisplaySearch_MouseDoubleClick" CanUserAddRows="False" IsReadOnly="True">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn x:Name="dataGridColumnPantryItemName" Binding="{Binding PantryID}" Header="Name" Width="*"></DataGridTextColumn>
+                                    <DataGridTextColumn x:Name="dataGridColumnPantryItemPrice" Binding="{Binding ItemPrice}" Header="Price" Width="*"></DataGridTextColumn>
+                                    <DataGridTextColumn x:Name="dataGridColumnPantryItemQuantity" Binding="{Binding ItemAmount}" Header="Quantity" Width="*"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <!--#endregion-->
+                            <!--#region Right Column-->
+                            <Label Grid.Row="1" Grid.Column="9" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right">First:</Label>
+                            <Label Grid.Row="2" Grid.Column="9" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right">Last:</Label>
+                            <Label Grid.Row="3" Grid.Column="9" Grid.ColumnSpan="2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left">Room Number:</Label>
+                            <TextBox x:Name="textBoxPantryBoxFirstName" Grid.Row="1" Grid.Column="10" Grid.ColumnSpan="2" Margin="0,38,25,0" HorizontalContentAlignment="Left"></TextBox>
+                            <TextBox x:Name="textBoxPantryBoxLastName" Grid.Row="2" Grid.Column="10" Grid.ColumnSpan="2" Margin="0,38,25,0" HorizontalContentAlignment="Left"></TextBox>
+                            <TextBox x:Name="textBoxPantryRoomNumber" Grid.Row="3" Grid.Column="10" Grid.ColumnSpan="2" Margin="40,38,25,0"></TextBox>
+                            <Button x:Name="buttonPantrySearch" Grid.Column="12" Grid.Row="4" Margin="0,15,0,15" Click="buttonPantrySearch_Click">Search</Button>
+                            <DataGrid x:Name="gridPantryDisplayGuest" Grid.Row="5" Grid.Column="8" Grid.ColumnSpan="5" Grid.RowSpan="3" FontSize="15" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Background="#FFEAEAEA" VerticalScrollBarVisibility="Visible" IsReadOnly="True" MouseDoubleClick="gridPantryDisplayGuest_MouseDoubleClick">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn x:Name="dataGridColumnPantryGuestName" Binding="{Binding Name}" Header="Name" Width="*"></DataGridTextColumn>
+                                    <DataGridTextColumn x:Name="dataGridColumnPantryGuestRoom" Binding="{Binding RoomID}" Header="Room" Width="*"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button x:Name="buttonPantryRoomCharge" Grid.Column="9" Grid.Row="8" Grid.ColumnSpan="3" Margin="50,10,50,10" FontSize="30" FontWeight="Medium" Click="buttonPantryRoomCharge_Click">Enter</Button>
+                            <Button x:Name="buttonPantrySalesLog" Grid.Column="9" Grid.Row="9" Grid.ColumnSpan="3" Margin="50,10,50,10" FontSize="30" FontWeight="Medium" Click="buttonPantrySalesLog_Click">Sales Log</Button>
+                            <Button x:Name="buttonPantryInventory" Grid.Column="9" Grid.Row="10" Grid.ColumnSpan="3" Margin="50,10,50,10" FontSize="30" FontWeight="Medium" Click="buttonPantryInventory_Click">Inventory</Button>
+                            <!--#endregion-->
+                            <!--#endregion-->
+                        </Grid>
+                    </TabItem>
+                    <TabItem x:Name="tabViewRooms" Header="View Rooms" FontSize="18" FontWeight="Bold" Height="35">
+                        <Grid  x:Name="viewRoomsGrid">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <!--#region ViewRoomsUI-->
+                            <Label Content="View Rooms" Grid.Column="5" Grid.ColumnSpan="3" FontSize="35" FontWeight="Bold" HorizontalContentAlignment="Center"  VerticalContentAlignment="Center"/>
+                            <!--#region Left Column-->
+                            <CheckBox x:Name="checkBoxAll" Grid.Column="0" Grid.Row="1" Margin="0,15,0,15" HorizontalContentAlignment="Left" Checked="checkBoxAll_Checked">All</CheckBox>
+                            <CheckBox x:Name="checkBoxInspected" Grid.Column="0" Grid.Row="2" Margin="0,15,0,15" HorizontalContentAlignment="Left" Checked="checkBoxInspected_Checked">Inspected</CheckBox>
+                            <CheckBox x:Name="checkBoxDirty" Grid.Column="0" Grid.Row="3" Margin="0,15,0,15" HorizontalContentAlignment="Left" Checked="checkBoxDirty_Checked">Dirty</CheckBox>
+
+                            <DataGrid x:Name="gridViewRoomsDisplay" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="6"  FontSize="15" VerticalScrollBarVisibility="Visible" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" AutoGenerateColumns="False" Background="#FFEAEAEA" CanUserAddRows="False" IsReadOnly="True" MouseDoubleClick="gridViewRoomsDisplay_MouseDoubleClick">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn x:Name="dataGridColumnViewRoomID" Binding="{Binding RoomID}" Header="Room" Width="*"></DataGridTextColumn>
+                                    <DataGridTextColumn x:Name="dataGridColumnViewRoomStatus" Binding="{Binding RoomStatus}" Header="Status" Width="*"></DataGridTextColumn>
+                                    <DataGridTextColumn x:Name="dataGridColumnViewRoomRoomAvailability" Binding="{Binding RoomAvailability}" Header="Availability" Width="*"></DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <!--#endregion-->
+                            <!--#region Room information-->
+                            <Label Grid.Column="8" Grid.Row="4" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Room:</Label>
+                            <TextBox x:Name="textBoxViewRoomRoomID" Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="1" Margin="0,20,15,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" IsReadOnly="True" Background="#FFEAEAEA" MouseDoubleClick="textBoxReservationRoom_MouseDoubleClick"></TextBox>
+
+                            <Label Grid.Column="10" Grid.Row="4" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Room Type:</Label>
+                            <ComboBox x:Name="comboBoxViewRoomType" Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="4" Margin="0,20,15,20" VerticalContentAlignment="Center" FontWeight="Normal" FontSize="15" Background="#FFEAEAEA" IsEnabled="False"></ComboBox>
+
+                            <Label Grid.Column="10" Grid.Row="5" FontSize="15" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold" Grid.ColumnSpan="2">Room Availability:</Label>
+                            <ComboBox x:Name="comboBoxViewRoomAvailability" Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="5" Margin="30,20,15,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" IsEnabled="False" Background="#FFEAEAEA"></ComboBox>
+
+                            <Label Grid.Column="8" Grid.Row="5" FontSize="15" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Room Price:</Label>
+                            <TextBox x:Name="textBoxViewRoomPrice" Grid.Column="9" Grid.Row="5" Grid.ColumnSpan="1" Margin="0,20,15,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" IsReadOnly="True" Background="#FFEAEAEA"></TextBox>
+
+                            <Label Grid.Column="8" Grid.Row="6" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold">Room Status:</Label>
+                            <ComboBox x:Name="comboBoxViewRoomStaus" Grid.Column="9" Grid.Row="6" Margin="0,20,10,20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Normal" FontSize="15" IsEnabled="False" Background="#FFEAEAEA"></ComboBox>
+
+                            <Label Grid.Column="10" Grid.Row="6" FontSize="14" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold">Room Description:</Label>
+                            <TextBox x:Name="textBoxViewRoomDescription" Grid.Column="10" Grid.Row="7" Grid.ColumnSpan="3" Grid.RowSpan="5" Margin="0,20,10,20" FontWeight="Normal" FontSize="15" IsEnabled="False" Background="#FFEAEAEA"></TextBox>
+                            <Button x:Name="buttonViewRoomsCancel" Grid.Column="9" Grid.ColumnSpan="2" Grid.Row="12" Margin="10" Content="Cancel" Visibility="Hidden" Click="buttonViewRoomsCancel_Click"></Button>
+                            <Button x:Name="buttonViewRoomsEdit" Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="12" Margin="10" Click="buttonViewRoomsEdit_Click" Content="Edit"></Button>
+                            <!--#endregion-->
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

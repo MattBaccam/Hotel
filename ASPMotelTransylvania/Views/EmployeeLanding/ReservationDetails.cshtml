@@ -1,0 +1,153 @@
+﻿@model DataObjects.ReservationVM
+
+@{
+    ViewBag.Title = "Reservation Details";
+}
+<div class="row row-cols-2">
+    <div class="col">
+        <div class="card m-1">
+            <div class="card-body">
+                <h5 class="card-title">Reservation Information</h5>
+                <h6 class="card-subtitle m-2 text-muted">About the reservation</br> Status: @Model.ReservationStatus </br> Stay Price: @ViewBag.Price</h6>
+                <div class="card-text">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @Value = $"{Model.Name}", @class = "form-control text-center", @ReadOnly = true } })
+
+                    @Html.LabelFor(model => model.Guest.Phone, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Guest.Phone, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+
+                    @Html.LabelFor(model => model.CheckIn, "Check In", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.CheckIn, new { htmlAttributes = new { @Value = Model.CheckIn.ToString("MM/dd/yyyy"), @class = "form-control text-center", @ReadOnly = true } })
+
+                    @Html.LabelFor(model => model.CheckOut, "Check Out", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.CheckOut, new { htmlAttributes = new { @Value = Model.CheckOut.ToString("MM/dd/yyyy"), @class = "form-control text-center", @ReadOnly = true } })
+
+                    @Html.LabelFor(model => model.Room.RoomID, "Room Number", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Room.RoomID, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+
+                    @Html.LabelFor(model => model.Room.RoomType.RoomTypeID, "Room Type", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Room.RoomType.RoomTypeID, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+                </div>
+                <div>
+                    @if (Model.ReservationStatus == "Due In")
+                    {
+                        @Html.ActionLink("Check In", "CheckIn", "EmployeeLanding", new { reservationID = Model.ReservationID, checkIn = DateTime.Now.Date, checkOut = Model.CheckOut.Date }, new { @class = "btn m-2" })
+                        @Html.ActionLink("Reschedule", "Reschedule", "Reservation", new { reservationID = Model.ReservationID }, new { @class = "btn m-2" })
+                        @Html.ActionLink("Cancel Reservation", "Cancel", "Reservation", new { reservationID = Model.ReservationID }, new { @class = "btn m-2" })
+                    }
+                    else if (Model.ReservationStatus == "Due Out")
+                    {
+                        @Html.ActionLink("Check Out", "CheckOut", "EmployeeLanding", new { reservationID = Model.ReservationID, checkOut = DateTime.Now.Date }, new { @class = "btn m-2" })
+                        @Html.ActionLink("Extend", "Reschedule", "Reservation", new { reservationID = Model.ReservationID }, new { @class = "btn m-2" })
+                    }
+                    @Html.ActionLink("Receipt", "Receipt", "EmployeeLanding", new { reservationID = Model.ReservationID }, new { @class = "btn m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card m-1">
+            <div class="card-body">
+                <h5 class="card-title">Room Information</h5>
+                <h6 class="card-subtitle m-2 text-muted">About the room</h6>
+                <div class="card-text">
+                    @if (Model.Room.RoomTypeID == "Single")
+                    {
+                        <div class="d-flex justify-content-center">
+                            <div id="carouselExampleIndicators@(Model.Room.RoomID)" class="carousel slide">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="~/Images/single/Bed.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Images/single/Balcony.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Images/single/Bathroom.jpg" class="d-block w-100 text-center" alt="Lobby" style="backdrop-filter: blur(.4em);">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Images/single/BathroomLookingOutside.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators@(Model.Room.RoomID)" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators@(Model.Room.RoomID)" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="d-flex justify-content-center">
+                            <div id="carouselExampleIndicators@(Model.Room.RoomID)" class="carousel slide">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="~/Images/Double/DoubleRoom.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Images/Double/BalconyView.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Images/Double/BalconyViewToRoom.jpg" class="d-block w-100 text-center" alt="Lobby" style="backdrop-filter: blur(.4em);">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Images/Double/Shower.jpg" class="d-block w-100" alt="Lobby" style="backdrop-filter: blur(.4em); ">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators@(Model.Room.RoomID)" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators@(Model.Room.RoomID)" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                    }
+                    @Html.LabelFor(model => model.Room.RoomID, "Room Number", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Room.RoomID, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+
+                    @Html.LabelFor(model => model.Room.RoomType.RoomTypeID, "Room Type", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Room.RoomType.RoomTypeID, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+                    @Html.ActionLink("Change Room", "Reschedule", "Reservation", new { reservationID = Model.ReservationID }, new { @class = "btn m-2", @ReadOnly = true })
+                    @Html.ActionLink("Room Details", "Details", "Room", new { roomID = Model.RoomID }, new { @class = "btn m-2" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card m-1">
+            <div class="card-body">
+                <h5 class="card-title">Contact Information</h5>
+                <h6 class="card-subtitle m-2 text-muted">Guest Information</h6>
+                <div class="card-text">
+                    @Html.LabelFor(model => model.Guest.FirstName, "First Name", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Guest.FirstName, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+
+                    @Html.LabelFor(model => model.Guest.LastName, "Last Name", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Guest.LastName, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+
+                    @Html.LabelFor(model => model.Guest.Email, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Guest.Email, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+
+                    @Html.LabelFor(model => model.Guest.Phone, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Guest.Phone, new { htmlAttributes = new { @class = "form-control text-center", @ReadOnly = true } })
+                </div>
+                @Html.ActionLink("Update Details", "UpdateGuest", "EmployeeLanding", new { guestID = Model.GuestID, reservationID = Model.ReservationID }, new { @class = "btn m-2" })
+            </div>
+        </div>
+    </div>
+    @*<div class="col">
+        <div class="card m-1">
+            <div class="card-body">
+                <h5 class="card-title">Pantry Charges</h5>
+                <h6 class="card-subtitle m-2 text-muted">Your pantry charges</h6>
+            </div>
+        </div>
+    </div>*@
+</div>

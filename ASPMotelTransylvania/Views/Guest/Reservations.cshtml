@@ -1,0 +1,55 @@
+﻿@model IEnumerable<DataObjects.ReservationVM>
+
+@{
+    ViewBag.Title = "Reservations";
+}
+<div>
+    <div class="btn-group w-100">
+        <div class="d-flex justify-content-center w-100">
+            @Html.ActionLink("Create Reservation", "RoomsAvailable", "Room", routeValues: null, htmlAttributes: new { @class = "btn m-1 d-flex justify-content-start" })
+            <div>
+                <button type="button" class="btn dropdown-toggle m-1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Filter
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="@Url.Action("Reservations", "Guest", new { filterID = "Due In" })">Due In</a>
+                    <a class="dropdown-item" href="@Url.Action("Reservations", "Guest", new { filterID = "Due Out" })">Due Out</a>
+                    <a class="dropdown-item" href="@Url.Action("Reservations", "Guest", new { filterID = "Out" })">Out</a>
+                    <a class="dropdown-item" href="@Url.Action("Reservations", "Guest", new { filterID = "Canceled" })">Canceled</a>
+                    <a class="dropdown-item" href="@Url.Action("Reservations", "Guest", new { filterID = "Ascending" })">Ascending</a>
+                    <a class="dropdown-item" href="@Url.Action("Reservations", "Guest", new { filterID = "Descending" })">Descending</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (ViewBag.Error != null)
+{
+    <h1 class="text-danger text-center">@ViewBag.Error</h1>
+}
+<div class="d-flex flex-wrap m-3">
+    <div class="d-flex flex-wrap w-100 justify-content-center">
+        @{
+            foreach (var reservation in Model)
+            {
+                <div class="m-3 w-75 text-center">
+                    <div class="card d-flex justify-content-center">
+                        <div class="card-header">
+                            Reservation : @reservation.ReservationStatus
+                        </div>
+                        <div class="card-body mx-auto vstack gap-3">
+                            <p class="card-text m-1">Check In: @reservation.CheckIn.ToString("MM/dd/yyyy") </p>
+                            <p class="card-text m-1"> Check Out: @reservation.CheckOut.ToString("MM/dd/yyyy")</p>
+                            <p class="card-text m-1">Adults: @reservation.AdultAmount || Children: @reservation.ChildAmount</p>
+                            <p class="card-text m-1">Room: @reservation.RoomID</p>
+                        </div>
+                        <div class="m-2">
+                            <button type="submit" class="btn m-1">Save</button>
+                            <a class="btn m-1" href="@Url.Action("ReservationDetails", "Guest", new { reservationID = reservation.ReservationID })">Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

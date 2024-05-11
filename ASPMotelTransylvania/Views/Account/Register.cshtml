@@ -1,0 +1,74 @@
+﻿@model ASPScenicHotel.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Please sign up for an account.";
+}
+<main class="container vstack">
+    <h2 id="title">@ViewBag.Title</h2>
+    <p class="lead mb-4">Sign up today to begin your stay</p>
+    <hr/>
+    <div class="row">
+        <div class="col-md-8">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    <div class="mb-4 d-flex flex-wrap">
+                        <div>
+                            @Html.LabelFor(m => m.FirstName, new { @class = "form-label" })
+                            <div class="col-md-11 m-2">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control border-0 bg-light rounded-end" })
+                                @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div>
+                            @Html.LabelFor(m => m.LastName, new { @class = "form-label" })
+                            <div class="col-md-11 m-2">
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control border-0 bg-light rounded-end" })
+                                @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 d-flex flex-wrap">
+                        <div>
+                            @Html.LabelFor(m => m.Email, new { @class = "form-label" })
+                            <div class="col-md-11 m-2">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control border-0 bg-light rounded-end" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                <span class="text-danger">@ViewBag.EmailExists</span>
+                            </div>
+                        </div>
+                        <div>
+                            @Html.LabelFor(m => m.PhoneNumber, "Phone", new { @class = "form-label" })
+                            <div class="col-md-11 m-2">
+                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control border-0 bg-light rounded-end" })
+                                @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 d-flex flex-wrap">
+                        <div class="col-md-11 m-2">
+                            @Html.LabelFor(m => m.Password, new { @class = "form-label" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control border-0 bg-light rounded-end m-1" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-11 m-2">
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "form-label" })
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control border-0 bg-light rounded-end m-1" })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="align-items-end mt-0">
+                        <input type="submit" value="Register" class="btn btn-outline-dark" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</main>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

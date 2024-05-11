@@ -1,0 +1,23 @@
+﻿<Window x:Class="ScenicHotel.ReservationCommentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScenicHotel"
+        mc:Ignorable="d"
+        Title="ReservationCommentWindow" Height="250" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="textBoxComments" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"></TextBox>
+        <Button x:Name="buttonDiscard" Grid.Row="1" Margin="15,35" Click="buttonDiscard_Click">Discard</Button>
+        <Button x:Name="buttonSave" Grid.Row="1" Grid.Column="2" Margin="15,35" Click="buttonSave_Click">Save</Button>
+    </Grid>
+</Window>
