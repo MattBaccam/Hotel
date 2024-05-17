@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ScenicHotel"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="ScenicHotel.MainWindow"
         mc:Ignorable="d"
-        Title="Motel Transylvania" Height="1025" Width="1500" WindowStartupLocation="CenterScreen" MinHeight="1025" MinWidth="1500" Loaded="Window_Loaded" Background="#FFDEDEDE">
+        Title="Scenic Hotel" Height="1025" Width="1500" WindowStartupLocation="CenterScreen" MinHeight="1025" MinWidth="1500" Loaded="Window_Loaded" Background="#FFDEDEDE">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="37*"/>
@@ -66,7 +66,7 @@
                 <!--Login/LogOut-->
             </Grid.ColumnDefinitions>
             <!--#region AppHeader -->
-            <Label FontWeight="Bold" VerticalAlignment="Center" FontSize="20" Grid.Column="0" Grid.Row="0" Content="Motel Transylvania:"/>
+            <Label FontWeight="Bold" VerticalAlignment="Center" FontSize="20" Grid.Column="0" Grid.Row="0" Content="Scenic Hotel:"/>
             <Label x:Name="labelEmployeeLoggedIn" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="18" Grid.Column="0" Grid.Row="1"/>
             <Label x:Name="labelEmployeeEmail" FontWeight="DemiBold" VerticalAlignment="Center" FontSize="20" Grid.Column="1" Grid.Row="0" HorizontalContentAlignment="Center" Content="Email"/>
             <TextBox x:Name="textBoxEmployeeEmail" VerticalAlignment="Center" FontSize="13" Grid.Column="1" Grid.Row="1" Background="#FFEAEAEA" Margin="10,0,10,0"></TextBox>
