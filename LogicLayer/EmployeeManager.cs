@@ -13,9 +13,16 @@ namespace LogicLayer
 {
     public class EmployeeManager : IEmployeeManager
     { 
-        //Dependancy inversion for the data provider 
-        private IEmployeeAccessor _employeeAccessor = new EmployeeAccessor();
+        private IEmployeeAccessor _employeeAccessor;
 
+        public EmployeeManager(IEmployeeAccessor employeeAccessorFake)
+        {
+            _employeeAccessor = employeeAccessorFake;
+        }
+        public EmployeeManager()
+        {
+            _employeeAccessor = new EmployeeAccessor();
+        }
 
         public bool AuthenticateEmployee(string email, string password)
         {

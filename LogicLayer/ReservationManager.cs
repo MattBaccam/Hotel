@@ -13,7 +13,16 @@ namespace LogicLayer
 {
     public class ReservationManager : IReservationManager
     {
-        private ReservationAccessor _reservationAccessor = new ReservationAccessor();
+        private IReservationAccessor _reservationAccessor;
+        public ReservationManager()
+        {
+            _reservationAccessor = new ReservationAccessor();
+        }
+
+        public ReservationManager(IReservationAccessor reservationAccessorFake)
+        {
+            _reservationAccessor = reservationAccessorFake;
+        }
 
         public Reservation GetReservationByID(int reservationID)
         {

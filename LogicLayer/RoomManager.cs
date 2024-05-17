@@ -12,8 +12,17 @@ namespace LogicLayer
 {
     public class RoomManager : IRoomManager
     {
-        private IRoomAccessor _roomAccessor = new RoomAccessor();
+        private IRoomAccessor _roomAccessor;
 
+        public RoomManager()
+        {
+            _roomAccessor = new RoomAccessor();
+        }
+
+        public RoomManager(IRoomAccessor roomAccessorFake)
+        {
+            _roomAccessor = roomAccessorFake;
+        }
         public Room GetRoom(int roomID)
         {
             try

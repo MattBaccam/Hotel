@@ -12,10 +12,15 @@ namespace LogicLayer
 {
     public class GuestManager : IGuestManager
     {
-		private IGuestAccessor _guestAccessor = new GuestAccessor();
+		private IGuestAccessor _guestAccessor;
 		public GuestManager() 
 		{
             _guestAccessor = new GuestAccessor();
+        }
+
+        public GuestManager(IGuestAccessor guestAccessorFake)
+        {
+            _guestAccessor = guestAccessorFake;
         }
 
         public bool AuthenticateGuest(string email, string password)
