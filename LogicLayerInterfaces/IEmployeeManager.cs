@@ -18,6 +18,6 @@ namespace LogicLayerInterfaces
         Employee GetEmployeeByEmail(string email);
         Employee GetEmployeeByID(int employeeID);
         List<Position> GetPositions();
-        bool UpdateEmployeeContactInformation(Employee newEmployee, Employee oldEmployee);
+        bool UpdateEmployeeInformation(Employee newEmployee, Employee oldEmployee);
     }
 }

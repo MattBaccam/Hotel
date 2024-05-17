@@ -154,11 +154,11 @@ namespace LogicLayer
             }
         }
 
-        public bool UpdateEmployeeContactInformation(Employee newEmployee, Employee oldEmployee)
+        public bool UpdateEmployeeInformation(Employee newEmployee, Employee oldEmployee)
         {
             try
             {
-                return _employeeAccessor.UpdateEmployeeContactInformation(newEmployee, oldEmployee);
+                return _employeeAccessor.UpdateEmployee(newEmployee, oldEmployee);
             }
             catch (Exception ex)
             {

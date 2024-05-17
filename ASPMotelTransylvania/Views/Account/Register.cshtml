@@ -8,7 +8,7 @@
     <hr/>
     <div class="row">
         <div class="col-md-8">
-            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+            @using (Html.BeginForm("Register", "Account", new { redirect = User.IsInRole("Admin") ? "Index" : null }, FormMethod.Post, new { role = "form" })) //Adds the redirect location otherwise it will be null
             {
                 @Html.AntiForgeryToken()
                 <div>
@@ -59,6 +59,32 @@
                             @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
                         </div>
                     </div>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="mb-4 d-flex flex-wrap">
+                            <div class="col-md-11 m-2">
+                                @Html.DropDownListFor(model => model.PositionTitle, new List<SelectListItem>()
+                               {
+                                    new SelectListItem()
+                                    {
+                                        Text = "Front Desk Agent",
+                                        Value = "Front Desk Agent"
+                                    },
+                                    new SelectListItem()
+                                    {
+                                        Text = "Housekeeper",
+                                        Value = "Housekeeper"
+                                    },
+                                    new SelectListItem()
+                                    {
+                                        Text = "Admim",
+                                        Value = "Admim"
+                                    }
+                               })
+                            </div>
+                        </div>
+                    }
 
                     <div class="align-items-end mt-0">
                         <input type="submit" value="Register" class="btn btn-outline-dark" />

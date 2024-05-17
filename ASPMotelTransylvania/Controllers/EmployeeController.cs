@@ -65,6 +65,7 @@ namespace ASPScenicHotel.Controllers
                     LastName = collection["LastName"],
                     Email = collection["Email"],
                     Phone = collection["Phone"],
+                    PositionID = employee.PositionID
                 };
                 var newUser = user;
                 newUser.FirstName = newEmployee.FirstName;
@@ -73,7 +74,7 @@ namespace ASPScenicHotel.Controllers
                 newUser.PhoneNumber = newEmployee.Phone;
                 if (manager.Update(newUser).Succeeded)
                 {
-                    if (_employeeManager.UpdateEmployeeContactInformation(newEmployee, employee))
+                    if (_employeeManager.UpdateEmployeeInformation(newEmployee, employee))
                     {
                         return RedirectToAction("Index");
                     }

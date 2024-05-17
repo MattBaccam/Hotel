@@ -42,45 +42,76 @@
             @Html.DisplayFor(model => model.UserName)
         </dd>
 
-        <dt>
-            Assigned Roles:
-        </dt>
 
-        <dd>
-            <ul>
-                @foreach (string role in ViewBag.Roles)
-                {
-                    <li>
-                        <strong>
-                            @role @Html.ActionLink("Remove Role", "RemoveRole", new { Id = Model.Id, Role = role}, new { @class = "btn" })
-                        </strong>
-                        @if (role == "Admin")
+        @if (Model.PositionTitle != "Guest")
+        {
+            <dt>
+                Assigned Roles:
+            </dt>
+
+            <dd>
+                <ul>
+                    @if (ViewBag.Roles != null)
+                    {
+                        foreach (string role in ViewBag.Roles)
                         {
-                            <span style="color: red; font-weight: bold;">@ViewBag.Error</span>
+                            <li>
+                                <strong>
+                                    @role @Html.ActionLink("Remove Role", "RemoveRole", new { Id = Model.Id, Role = role }, new { @class = "btn" })
+                                </strong>
+                                @if (role == "Admin")
+                                {
+                                    <span style="color: red; font-weight: bold;">@ViewBag.Error</span>
+                                }
+                            </li>
                         }
-                    </li>
-                }
-            </ul>
-        </dd>
+                    }
+                </ul>
+            </dd>
 
+            <dt>
+                Unassigned Roles:
+            </dt>
 
-        <dt>
-            Unassigned Roles:
-        </dt>
+            <dd>
+                <ul>
+                    @if (ViewBag.NoRoles != null)
+                    {
+                        foreach (string role in ViewBag.NoRoles)
+                        {
+                            <li>
+                                <strong>
+                                    @role @Html.ActionLink("Add Role", "AddRole", new { Id = Model.Id, Role = role }, new { @class = "btn m-1" })
+                                </strong>
+                            </li>
+                        }
+                    }
+                </ul>
+            </dd>
+        }
 
-        <dd>
-            <ul>
-                @foreach (string role in ViewBag.NoRoles)
-                {
-                    <li>
-                        <strong>
-                            @role @Html.ActionLink("Add Role", "AddRole", new { Id = Model.Id, Role = role }, new { @class = "btn m-1" })
-                        </strong>
-                    </li>
-                }
-            </ul>
-        </dd>
+        @if (Model.PositionTitle == "Guest")
+        {
+            <dt>
+                Assigned Roles:
+            </dt>
 
+            <dd>
+                <ul>
+                    @if (ViewBag.Roles != null)
+                    {
+                        foreach (string role in ViewBag.Roles)
+                        {
+                            <li>
+                                <strong>
+                                    @role
+                                </strong>
+                            </li>
+                        }
+                    }
+                </ul>
+            </dd>
+        }
     </dl>
 </div>
 <p>

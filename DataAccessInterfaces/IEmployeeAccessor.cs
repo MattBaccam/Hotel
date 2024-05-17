@@ -13,7 +13,7 @@ namespace DataAccessInterfaces
         int InsertEmployee(Employee employee);
         Employee SelectEmployeeByEmail(string email);
         Employee SelectEmployeeByID(int employeeID);
-        bool UpdateEmployeeContactInformation(Employee newEmployee, Employee oldEmployee);
+        bool UpdateEmployee(Employee newEmployee, Employee oldEmployee);
         int UpdatePasswordHash(int employeeID, string oldPasswordHash, string newPasswordHash);
         List<Position> SelectAllPositions();
     }

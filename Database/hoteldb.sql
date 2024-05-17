@@ -844,14 +844,16 @@ GO
 
 
 PRINT '' 
-PRINT 'Creating sp_update_employee_contact_information'
+PRINT 'Creating sp_update_employee'
 GO
-CREATE PROCEDURE [dbo].[sp_update_employee_contact_information](
+CREATE PROCEDURE [dbo].[sp_update_employee](
 	@EmployeeID [INT]
+	, @NewPositionID [INT]
 	, @NewFirstName [NVARCHAR](25)
 	, @NewLastName [NVARCHAR](25)
 	, @NewPhone [NVARCHAR](25)
 	, @NewEmail [NVARCHAR](100)
+	, @OldPositionID [INT]
 	, @OldFirstName [NVARCHAR](25)
 	, @OldLastName [NVARCHAR](25)
 	, @OldPhone [NVARCHAR](25)
@@ -859,11 +861,13 @@ CREATE PROCEDURE [dbo].[sp_update_employee_contact_information](
 ) AS
 	BEGIN 
 		UPDATE [Employee]
-		SET [FirstName] = @NewFirstName
+		SET [PositionID] = @NewPositionID
+		, [FirstName] = @NewFirstName
 		, [LastName] = @NewLastName
 		, [Phone] = @NewPhone
 		, [Email] = @NewEmail
 		WHERE [EmployeeID] = @EmployeeID AND
+			[PositionID] = @OldPositionID AND
 			[FirstName] = @OldFirstName AND
 			 [LastName] = @OldLastName AND
 			 [Phone] = @OldPhone AND

@@ -224,7 +224,7 @@ namespace ASPScenicHotel.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, string redirect = null)
         {
             if (ModelState.IsValid)
             {
@@ -303,36 +303,92 @@ namespace ASPScenicHotel.Controllers
                         {
                             ViewBag.EmailExists = ("Email already exists");
                         }
-                        else// not an existing user in the db this is where we would create GUEST ACCOUNTS ONLY
+                        else// not an existing user in the db this is where we would create GUEST ACCOUNTS ONLY OR ACCOUTNS THAT ARE CREATED AND ARE GOING TO BE REDIRECTED BACK FOR THE ADMIN
                         {
-                            guestManager.CreateGuest(new Guest()
+                            if(redirect != null)//To do: complete this whole if statement then go to the register page and make sure if its an admin accessing it we can assign roles on creation
                             {
-                                FirstName = model.FirstName,
-                                LastName = model.LastName,
-                                Phone = model.PhoneNumber,
-                                Email = model.Email
-                            });
-                            var newGuest = guestManager.GetGuestByEmail(model.Email);
-                            var user = new ApplicationUser()
-                            {
-                                PositionTitle = "Guest",
-                                FirstName = model.FirstName,
-                                LastName = model.LastName,
-                                UserName = model.Email,
-                                Email = model.Email,
-                                AppID = newGuest.GuestID
-                            };
-                            var result = await UserManager.CreateAsync(user, model.Password);
-                            if (result.Succeeded)
-                            {
-                                UserManager.AddToRole(user.Id, "Guest");
-                                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                                return RedirectToAction("Index", "Home");
+                                if(redirect == "Index")
+                                {
+                                    var newEmployeePosition = employeeManager.GetPositions().FirstOrDefault(position => position.PositionTitle == model.PositionTitle);
+                                    if(newEmployeePosition != null)
+                                    {
+                                        employeeManager.CreateNewEmployee(new Employee()
+                                        {
+                                            FirstName = model.FirstName,
+                                            LastName = model.LastName,
+                                            Phone = model.PhoneNumber,
+                                            Email = model.Email,
+                                            PositionID = newEmployeePosition.PositionID
+                                        }); 
+                                        var newEmployee = employeeManager.GetEmployeeByEmail(model.Email);
+                                        var user = new ApplicationUser()
+                                        {
+                                            PositionTitle = "Front Desk Agent",
+                                            FirstName = model.FirstName,
+                                            LastName = model.LastName,
+                                            UserName = model.Email,
+                                            Email = model.Email,
+                                            AppID = newEmployee.EmployeeID
+                                        };
+                                        var result = await UserManager.CreateAsync(user, model.Password);
+                                        if (result.Succeeded)
+                                        {
+                                            var roleResult = UserManager.AddToRole(user.Id, newEmployeePosition.PositionTitle);
+                                            if (roleResult.Succeeded)
+                                            {
+                                                return RedirectToAction("Index", "Admin");
+                                            }
+                                            else
+                                            {
+                                                AddErrors(new IdentityResult($"Failed to add user to {newEmployeePosition.PositionTitle} role"));
+                                            }
+                                        }
+                                        else
+                                        {
+                                            AddErrors(new IdentityResult("Failed to create user in Identity System"));
+                                        }
+                                        AddErrors(result);
+                                    }
+                                    else
+                                    {
+                                        AddErrors(new IdentityResult("Position was not valid"));
+                                    }
+                                }
+                                else if (redirect != "Index")
+                                {
+                                    AddErrors(new IdentityResult("Invalid Url parameter"));
+                                }
                             }
-                            AddErrors(result);
+                            else
+                            {
+                                guestManager.CreateGuest(new Guest()
+                                {
+                                    FirstName = model.FirstName,
+                                    LastName = model.LastName,
+                                    Phone = model.PhoneNumber,
+                                    Email = model.Email
+                                });
+                                var newGuest = guestManager.GetGuestByEmail(model.Email);
+                                var user = new ApplicationUser()
+                                {
+                                    PositionTitle = "Guest",
+                                    FirstName = model.FirstName,
+                                    LastName = model.LastName,
+                                    UserName = model.Email,
+                                    Email = model.Email,
+                                    AppID = newGuest.GuestID
+                                };
+                                var result = await UserManager.CreateAsync(user, model.Password);
+                                if (result.Succeeded)
+                                {
+                                    UserManager.AddToRole(user.Id, "Guest");
+                                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                                    return RedirectToAction("Index", "Home");
+                                }
+                                AddErrors(result);
+                            }
                         }
                     }
-                    else
                     {
                         return RedirectToAction("Login", "Account");
                     }

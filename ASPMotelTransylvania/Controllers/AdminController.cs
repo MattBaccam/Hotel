@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using ASPScenicHotel.Models;
+using LogicLayer;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
@@ -31,7 +32,7 @@ namespace ASPScenicHotel.Controllers
             {
                 ViewBag.Error = ex.Message;
             }
-            return View();
+            return View(users);
         }
 
         // GET: Admin/Details/5
@@ -52,7 +53,7 @@ namespace ASPScenicHotel.Controllers
                     return HttpNotFound();
                 }
                 //Get a list of roles the user has an put them into a viewbag as roles
-                //along witha  list of roles the user doesnt have noRoles
+                //along with a  list of roles the user doesnt have noRoles
                 var usrMngr = new LogicLayer.EmployeeManager();
                 var allRoles = usrMngr.GetPositions().Select(role => role.PositionTitle);
 
@@ -98,13 +99,20 @@ namespace ASPScenicHotel.Controllers
                     else
                     {
                         userManager.RemoveFromRole(id, role);
+                        var oldEmployee = usrMngr.GetEmployeeByEmail(user.Email);
+                        var newEmployee = oldEmployee.DeepCopy();
+                        newEmployee.PositionID = usrMngr.GetPositions().FirstOrDefault(position => position.PositionTitle == role).PositionID;
+                        usrMngr.UpdateEmployeeInformation(newEmployee, oldEmployee);
                     }
                 }
                 else
                 {
                     if (user.Roles.Count >= 1)
                     {
-                        userManager.RemoveFromRole(id, role);
+                        var oldEmployee = usrMngr.GetEmployeeByEmail(user.Email);
+                        var newEmployee = oldEmployee.DeepCopy();
+                        newEmployee.PositionID = usrMngr.GetPositions().FirstOrDefault(position => position.PositionTitle == role).PositionID;
+                        usrMngr.UpdateEmployeeInformation(newEmployee, oldEmployee);
                     }
                     else
                     {
@@ -135,11 +143,30 @@ namespace ASPScenicHotel.Controllers
                 userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 user = userManager.Users.First(u => u.Id == id);
 
-                userManager.RemoveFromRole(id, role);//removes the old role because i only want to allow one role per user
+                userManager.RemoveFromRole(id, user.PositionTitle);//removes the old role because i only want to allow one role per user
 
                 userManager.AddToRole(id, role);
+                switch (role)
+                {
+                    case "Front Desk Agent":
+                        user.PositionTitle = "Front Desk Agent";
+                        break;
+                    case "Admin":
+                        user.PositionTitle = "Admin";
+                        break;
+                    case "Housekeeper":
+                        user.PositionTitle = "Housekeeper";
+                        break;
+                    default:
+                        throw new Exception("Role was not under the three categories Admin, Housekeeper, or Front Desk Agent");
+                }
+                userManager.Update(user);
 
                 var usrMngr = new LogicLayer.EmployeeManager();
+                var oldEmployee = usrMngr.GetEmployeeByEmail(user.Email);
+                var newEmployee = oldEmployee.DeepCopy();
+                newEmployee.PositionID = usrMngr.GetPositions().FirstOrDefault(position => position.PositionTitle == role).PositionID;
+                usrMngr.UpdateEmployeeInformation(newEmployee, oldEmployee);//FAILS HERE 
                 var allRoles = usrMngr.GetPositions().Select(r => r.PositionTitle);
 
                 var roles = userManager.GetRoles(id);

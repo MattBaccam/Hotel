@@ -24,5 +24,18 @@ namespace DataObjects
         [Required]
         [DataType(DataType.EmailAddress, ErrorMessage = "Please provide a valid email")]
         public string Email { get; set; }
+
+        public Guest DeepCopy()
+        {
+            Guest deepcopyGuest = new Guest()
+            {
+                GuestID = this.GuestID,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                Email = this.Email,
+                Phone = this.Phone
+            };
+            return deepcopyGuest;
+        }
     }
 }

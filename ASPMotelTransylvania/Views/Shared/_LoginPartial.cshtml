@@ -42,12 +42,16 @@
                 {
                     <li class="nav-item dropdown">
                         <div class="btn-group dropdown">
-                            @Html.ActionLink("Employee", "Index", "EmployeeLanding", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn" })
+                            @Html.ActionLink("Employee", "Index", "EmployeeLanding", routeValues: null, htmlAttributes: new { @class = "btn" })
                             <button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown"></button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSecondary">
-                                @Html.ActionLink("Reservations", "Reservations", "EmployeeLanding", htmlAttributes: new { id = "registerLink", @class = "dropdown-item" })
-                                @Html.ActionLink("Room Management", "Index", "Room", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "dropdown-item" })
+                                @Html.ActionLink("Reservations", "Reservations", "EmployeeLanding", htmlAttributes: new { @class = "dropdown-item" })
+                                @Html.ActionLink("Room Management", "Index", "Room", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
                                 <hr class="dropdown-divider">
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    @Html.ActionLink("Administration", "Index", "Admin", routeValues: null, htmlAttributes: new { @class = "dropdown-item" })
+                                }
                             </div>
                         </div>
                     </li>
@@ -64,6 +68,12 @@
                         </div>
                     </li>
                 }
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Administration", "Index", "Admin", routeValues: null, htmlAttributes: new { @class = "btn" })
+                    </li>
+                }
                 @if (User.IsInRole("Guest"))
                 {
                     <li class="nav-item">
@@ -73,7 +83,7 @@
                 @if (User.IsInRole("Front Desk Agent") || User.IsInRole("Admin"))
                 {
                     <li class="nav-item">
-                        @Html.ActionLink("Reservations","Reservations", "EmployeeLanding", routeValues: null, htmlAttributes: new { @class = "btn" })
+                        @Html.ActionLink("Reservations", "Reservations", "EmployeeLanding", routeValues: null, htmlAttributes: new { @class = "btn" })
                     </li>
                 }
                 <li class="nav-item">
@@ -86,4 +96,3 @@
         </div>
     </div>
 </nav>
-

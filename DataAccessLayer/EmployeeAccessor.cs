@@ -23,8 +23,6 @@ namespace DataAccessLayer
 
             cmd.CommandType = CommandType.StoredProcedure;
 
-
-
             cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 100);
             cmd.Parameters.Add("@PasswordHash", SqlDbType.NVarChar, 100);
 
@@ -59,14 +57,6 @@ namespace DataAccessLayer
             var cmd = new SqlCommand(commandText, connection);
 
             cmd.CommandType = CommandType.StoredProcedure;
-
-            /*
-              @PositionID
-	        , @FirstName
-	        , @LastName
-	        , @Phone
-	        , @Email	
-             */
 
             cmd.Parameters.Add("@PositionID", SqlDbType.Int);
             cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar, 25);
@@ -240,28 +230,32 @@ namespace DataAccessLayer
             }
         }
 
-        public bool UpdateEmployeeContactInformation(Employee newEmployee, Employee oldEmployee)
+        public bool UpdateEmployee(Employee newEmployee, Employee oldEmployee)
         {
             var connection = SqlConnectionProvider.GetConnection();
-            var commandText = "sp_update_employee_contact_information";
+            var commandText = "sp_update_employee";
             var cmd = new SqlCommand(commandText, connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@EmployeeID", SqlDbType.Int);
+            cmd.Parameters.Add("@NewPositionID", SqlDbType.Int);
             cmd.Parameters.Add("@NewFirstName", SqlDbType.NVarChar, 25);
             cmd.Parameters.Add("@NewLastName", SqlDbType.NVarChar, 25);
             cmd.Parameters.Add("@NewPhone", SqlDbType.NVarChar, 25);
             cmd.Parameters.Add("@NewEmail", SqlDbType.NVarChar, 100);
+            cmd.Parameters.Add("@OldPositionID", SqlDbType.Int);
             cmd.Parameters.Add("@OldFirstName", SqlDbType.NVarChar, 25);
             cmd.Parameters.Add("@OldLastName", SqlDbType.NVarChar, 25);
             cmd.Parameters.Add("@OldPhone", SqlDbType.NVarChar, 25);
             cmd.Parameters.Add("@OldEmail", SqlDbType.NVarChar, 100);
 
             cmd.Parameters["@EmployeeID"].Value = oldEmployee.EmployeeID;
+            cmd.Parameters["@NewPositionID"].Value = newEmployee.PositionID;
             cmd.Parameters["@NewFirstName"].Value = newEmployee.FirstName;
             cmd.Parameters["@NewLastName"].Value = newEmployee.LastName;
             cmd.Parameters["@NewPhone"].Value = newEmployee.Phone;
             cmd.Parameters["@NewEmail"].Value = newEmployee.Email;
 
+            cmd.Parameters["@OldPositionID"].Value = oldEmployee.PositionID;
             cmd.Parameters["@OldFirstName"].Value = oldEmployee.FirstName;
             cmd.Parameters["@OldLastName"].Value = oldEmployee.LastName;
             cmd.Parameters["@OldPhone"].Value = oldEmployee.Phone;

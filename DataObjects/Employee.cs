@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,19 @@ namespace DataObjects
         [Required]
         [RegularExpression(@"^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$", ErrorMessage = "Please provide a valid phone number")]
         public string Phone { get; set; }
+        public Employee DeepCopy()
+        {
+            Employee deepcopyEmployee = new Employee()
+            {
+                EmployeeID = this.EmployeeID,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                Email = this.Email,
+                Phone = this.Phone,
+                PositionID = this.PositionID
+            };
+            return deepcopyEmployee;
+        }
     }
     public class EmployeeVM : Employee
     {
