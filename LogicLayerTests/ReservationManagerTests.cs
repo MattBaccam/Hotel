@@ -1,10 +1,12 @@
 ﻿using DataAccessFakes;
+using DataAccessInterfaces;
 using DataObjects;
 using LogicLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace LogicLayerTests
 {
@@ -12,13 +14,13 @@ namespace LogicLayerTests
     public class ReservationManagerTests
     {
         private ReservationManager _reservationManager;
-        private ReservationAccessorFake _reservationAccessorFake;
+        private IReservationAccessor _reservationAccessorFake;
 
         [TestInitialize]
         public void TestSetup()
         {
             _reservationManager = new ReservationManager(new ReservationAccessorFake());
-            _reservationAccessorFake = new ReservationAccessorFake();//Added this to differ away from having some methods that check to see if accessor fake is being used, rather have the method itsself called directly
+            _reservationAccessorFake = new ReservationAccessorFake();//Added this to differ away from having some methods that check to see if accessor fake is being used, rather have the method itsself called directly.
         }
 
         [TestMethod]
@@ -61,6 +63,7 @@ namespace LogicLayerTests
             bool result = _reservationManager.SaveReservationComments(reservationID, newComments);
 
             Assert.IsTrue(result);
+            _reservationAccessorFake = new ReservationAccessorFake();
         }
 
         [TestMethod]
@@ -73,6 +76,7 @@ namespace LogicLayerTests
             bool result = _reservationManager.SaveReservationForCheckIn(reservationID, newCheckIn, oldCheckIn);
 
             Assert.IsTrue(result);
+            _reservationAccessorFake = new ReservationAccessorFake();
         }
 
         [TestMethod]
@@ -85,6 +89,7 @@ namespace LogicLayerTests
             bool result = _reservationAccessorFake.UpdateReservationForCheckOut(reservationID, newCheckOut, oldCheckOut);
 
             Assert.IsTrue(result);
+            _reservationAccessorFake = new ReservationAccessorFake();
         }
 
         [TestMethod]
@@ -96,6 +101,7 @@ namespace LogicLayerTests
             bool result = _reservationManager.SaveReservation(newReservation, oldReservation);
 
             Assert.IsTrue(result);
+            _reservationAccessorFake = new ReservationAccessorFake();
         }
 
         [TestMethod]
@@ -110,6 +116,7 @@ namespace LogicLayerTests
             bool result = _reservationManager.SaveReservationForReschedule(reservationID, newCheckIn, newCheckOut, oldCheckIn, oldCheckOut);
 
             Assert.IsTrue(result);
+            _reservationAccessorFake = new ReservationAccessorFake();
         }
 
         [TestMethod]
@@ -121,6 +128,7 @@ namespace LogicLayerTests
             bool result = _reservationManager.SaveReservationForCancel(reservationID, oldReservationStatus);
 
             Assert.IsFalse(result);
+            _reservationAccessorFake = new ReservationAccessorFake();
         }
 
         [TestMethod]
@@ -131,6 +139,7 @@ namespace LogicLayerTests
             bool result = _reservationManager.CreateReservation(reservation);
 
             Assert.IsTrue(result);
+            _reservationAccessorFake = new ReservationAccessorFake();
         }
 
         [TestMethod]
@@ -213,6 +222,7 @@ namespace LogicLayerTests
             bool result = _reservationAccessorFake.UpdateReservationForRescheduleNewRoom(reservationID, newRoomID, newCheckIn, newCheckOut, oldRoomID, oldCheckIn, oldCheckOut);
 
             Assert.IsTrue(result);
+            _reservationAccessorFake = new ReservationAccessorFake();
         }
 
         [TestMethod]
@@ -227,6 +237,7 @@ namespace LogicLayerTests
             bool result = _reservationAccessorFake.UpdateReservationChildAdultAmount(reservationID, newAdultAmount, newChildAmount, oldAdultAmount, oldChildAmount);
 
             Assert.IsTrue(result);
+            _reservationAccessorFake = new ReservationAccessorFake();
         }
     }
 }

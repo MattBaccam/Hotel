@@ -12,6 +12,7 @@ namespace DataAccessFakes
     {
         public static List<Reservation> _reservations = new List<Reservation>();
         public static List<ReservationVM> _reservationVMs = new List<ReservationVM>();
+
         public ReservationAccessorFake()
         {
             _reservations.Add(new Reservation

@@ -1,4 +1,5 @@
 ﻿using DataAccessFakes;
+using DataAccessInterfaces;
 using DataObjects;
 using LogicLayer;
 using LogicLayerInterfaces;
@@ -6,13 +7,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 namespace LogicLayerTests
 {
     [TestClass]
     public class RoomManagerTests
     {
         private IRoomManager _roomManager;
-        private RoomAccessorFake _roomAccessorFake;
+        private IRoomAccessor _roomAccessorFake;
 
         [TestInitialize]
         public void TestSetUp()
@@ -65,6 +67,7 @@ namespace LogicLayerTests
             bool statusUpdated = _roomManager.SaveRoomStatus(roomID, oldStatus, newStatus);
 
             Assert.IsTrue(statusUpdated);
+            _roomAccessorFake = new RoomAccessorFake();
         }
 
         [TestMethod]
@@ -117,6 +120,7 @@ namespace LogicLayerTests
             bool updated = _roomManager.UpdateRoom(newRoom, oldRoom);
 
             Assert.IsTrue(updated);
+            _roomAccessorFake = new RoomAccessorFake();
         }
 
         [TestMethod]
@@ -126,9 +130,11 @@ namespace LogicLayerTests
             bool newAvailability = false;
             bool oldAvailability = true;
 
+            Thread.Sleep(1);
             bool availabilityUpdated = _roomManager.UpdateRoomAvailability(roomID, newAvailability, oldAvailability);
 
             Assert.IsTrue(availabilityUpdated);
+            _roomAccessorFake = new RoomAccessorFake();
         }
 
         [TestMethod]
@@ -140,6 +146,7 @@ namespace LogicLayerTests
             bool updated = _roomManager.UpdateRoomType(newRoomType, oldRoomType);
 
             Assert.IsTrue(updated);
+            _roomAccessorFake = new RoomAccessorFake();
         }
 
         [TestMethod]
@@ -149,8 +156,8 @@ namespace LogicLayerTests
             DateTime checkIn = DateTime.Now;
             DateTime checkOut = DateTime.Now.AddDays(1);
 
+            Thread.Sleep(1);
             var rooms = _roomAccessorFake.SelectRoomAvailabilityExceptReservation(reservationID, checkIn, checkOut);
-
             Assert.IsNotNull(rooms);
         }
     }
