@@ -67,8 +67,8 @@ namespace LogicLayerTests
         public void TestSaveReservationForCheckIn()
         {
             int reservationID = 1;
-            DateTime newCheckIn = DateTime.Today;
-            DateTime oldCheckIn = DateTime.Today.AddDays(1);
+            DateTime newCheckIn = DateTime.Today.Date;
+            DateTime oldCheckIn = DateTime.Today.AddDays(1).Date;
 
             bool result = _reservationManager.SaveReservationForCheckIn(reservationID, newCheckIn, oldCheckIn);
 
@@ -79,8 +79,8 @@ namespace LogicLayerTests
         public void TestSaveReservationForCheckOut()
         {
             int reservationID = 1;
-            DateTime newCheckOut = DateTime.Today.AddDays(4);
-            DateTime oldCheckOut = DateTime.Today.AddDays(3);
+            DateTime newCheckOut = DateTime.Today.AddDays(4).Date;
+            DateTime oldCheckOut = DateTime.Today.AddDays(3).Date;
 
             bool result = _reservationAccessorFake.UpdateReservationForCheckOut(reservationID, newCheckOut, oldCheckOut);
 
@@ -102,10 +102,10 @@ namespace LogicLayerTests
         public void TestSaveReservationForReschedule()
         {
             int reservationID = 1;
-            DateTime newCheckIn = DateTime.Today.AddDays(2);
-            DateTime newCheckOut = DateTime.Today.AddDays(4);
-            DateTime oldCheckIn = DateTime.Today.AddDays(1);
-            DateTime oldCheckOut = DateTime.Today.AddDays(3);
+            DateTime newCheckIn = DateTime.Today.AddDays(2).Date;
+            DateTime newCheckOut = DateTime.Today.AddDays(4).Date;
+            DateTime oldCheckIn = DateTime.Today.AddDays(1).Date;
+            DateTime oldCheckOut = DateTime.Today.AddDays(3).Date;
 
             bool result = _reservationManager.SaveReservationForReschedule(reservationID, newCheckIn, newCheckOut, oldCheckIn, oldCheckOut);
 
@@ -204,11 +204,11 @@ namespace LogicLayerTests
         {
             int reservationID = 1;
             int newRoomID = 2;
-            DateTime newCheckIn = DateTime.Today.AddDays(1);
-            DateTime newCheckOut = DateTime.Today.AddDays(2);
+            DateTime newCheckIn = DateTime.Today.AddDays(1).Date;
+            DateTime newCheckOut = DateTime.Today.AddDays(2).Date;
             int oldRoomID = 1;
-            DateTime oldCheckIn = DateTime.Today.AddDays(1);
-            DateTime oldCheckOut = DateTime.Today.AddDays(3);
+            DateTime oldCheckIn = DateTime.Today.AddDays(1).Date;
+            DateTime oldCheckOut = DateTime.Today.AddDays(3).Date;
 
             bool result = _reservationAccessorFake.UpdateReservationForRescheduleNewRoom(reservationID, newRoomID, newCheckIn, newCheckOut, oldRoomID, oldCheckIn, oldCheckOut);
 

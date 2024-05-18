@@ -359,10 +359,10 @@ namespace DataAccessFakes
 
         public bool UpdateReservationForCheckIn(int reservationID, DateTime newCheckIn, DateTime oldCheckIn)
         {
-            var reservation = _reservations.FirstOrDefault(r => r.ReservationID == reservationID && r.CheckIn == oldCheckIn);
+            var reservation = _reservations.FirstOrDefault(r => r.ReservationID == reservationID && r.CheckIn.Date == oldCheckIn);
             if (reservation != null)
             {
-                reservation.CheckIn = newCheckIn;
+                reservation.CheckIn = newCheckIn.Date;
                 return true;
             }
             return false;
@@ -370,10 +370,10 @@ namespace DataAccessFakes
 
         public bool UpdateReservationForCheckOut(int reservationID, DateTime newCheckOut, DateTime oldCheckOut)
         {
-            var reservation = _reservations.FirstOrDefault(r => r.ReservationID == reservationID && r.CheckOut == oldCheckOut);
+            var reservation = _reservations.FirstOrDefault(r => r.ReservationID == reservationID && r.CheckOut.Date == oldCheckOut);
             if (reservation != null)
             {
-                reservation.CheckOut = newCheckOut;
+                reservation.CheckOut = newCheckOut.Date;
                 return true;
             }
             return false;
@@ -381,7 +381,7 @@ namespace DataAccessFakes
 
         public bool UpdateReservationForReschedule(int reservationID, DateTime newCheckIn, DateTime newCheckOut, DateTime oldCheckIn, DateTime oldCheckOut)
         {
-            var reservation = _reservations.FirstOrDefault(r => r.ReservationID == reservationID && r.CheckIn == oldCheckIn && r.CheckOut == oldCheckOut);
+            var reservation = _reservations.FirstOrDefault(r => r.ReservationID == reservationID && r.CheckIn.Date == oldCheckIn && r.CheckOut.Date == oldCheckOut);
             if (reservation != null)
             {
                 reservation.CheckIn = newCheckIn;
@@ -393,7 +393,7 @@ namespace DataAccessFakes
 
         public bool UpdateReservationForRescheduleNewRoom(int reservationID, int newRoomID, DateTime newCheckIn, DateTime newCheckOut, int oldRoomID, DateTime oldCheckIn, DateTime oldCheckOut)
         {
-            var reservation = _reservations.FirstOrDefault(r => r.ReservationID == reservationID && r.RoomID == oldRoomID && r.CheckIn == oldCheckIn && r.CheckOut == oldCheckOut);
+            var reservation = _reservations.FirstOrDefault(r => r.ReservationID == reservationID && r.RoomID == oldRoomID && r.CheckIn.Date == oldCheckIn && r.CheckOut.Date == oldCheckOut);
             if (reservation != null)
             {
                 reservation.RoomID = newRoomID;
